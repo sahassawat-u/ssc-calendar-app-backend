@@ -21,27 +21,8 @@ public class Events {
 
 //    @Lob
 //    private Blob events;
-//    @Lob
     @Column(name = "events", columnDefinition="LONGBLOB")
     @Convert(converter = EventConverter.class)
     private List<EventClass> events;
-//    @JsonCreator
-//    public Events(@JsonProperty("name") String name,
-//                @JsonProperty("details") String details,
-//                @JsonProperty("start") String start,
-//                @JsonProperty("end") String end,
-//                @JsonProperty("color") String color) {
-//
-//        this.name = name;
-//        this.details = details;
-//        this.start = start;
-//        this.end = end;
-//        this.color = start;
-//    }
 
-//    @Column(unique = true)
-//    private JsonArray events;
-//    private long uid;
-
-//    private String role;
 }

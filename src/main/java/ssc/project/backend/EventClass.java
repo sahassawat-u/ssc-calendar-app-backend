@@ -18,7 +18,6 @@ public class EventClass implements Serializable {
     private String end;
 
     private String color;
-//    private String id;
 
     public EventClass(){
     }
@@ -28,7 +27,6 @@ public class EventClass implements Serializable {
         this.start = start;
         this.end = end;
         this.color = color;
-//        this.id = id;
 
     }
 }

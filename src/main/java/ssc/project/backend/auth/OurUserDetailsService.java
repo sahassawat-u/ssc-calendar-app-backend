@@ -18,9 +18,6 @@ public class OurUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-//    public OurUserDetailsService(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
@@ -30,6 +27,5 @@ public class OurUserDetailsService implements UserDetailsService {
         } else {
             throw new UsernameNotFoundException("Invalid username or password!!");
         }
-//        return null;
     }
 }

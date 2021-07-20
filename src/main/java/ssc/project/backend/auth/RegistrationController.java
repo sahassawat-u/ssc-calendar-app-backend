@@ -25,7 +25,6 @@ public class RegistrationController {
     public void register(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-//        System.out.println("from register " + username + password);
         try {
             // logging in twice has error
             // check if there is a current user logged in, if so log that user out first
@@ -39,9 +38,6 @@ public class RegistrationController {
             newUser.setPassword(passwordEncoder.encode(password));
             newUser.setRole("USER");
             userRepository.save(newUser);
-//            String name = "Business";
-//            String details = "Business Trip";
-
             EventClass event = new EventClass();
             event.setName("dummy");
             event.setDetails("for blob");
@@ -61,11 +57,6 @@ public class RegistrationController {
 //                    .build();
 
         } catch (ServletException e) {
-//            return SimpleResponse.builder()
-//                    .success(true)
-//                    .message(e.getMessage())
-//                    .build();
         }
-//        return "Login";
     }
 }

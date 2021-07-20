@@ -16,17 +16,11 @@ public class UpdateEventController {
 
     @PostMapping("/api/updateEvent")
     public void register(HttpServletRequest request){
-//        String name = request.getParameter("name");
         String details = request.getParameter("details");
         String thisEle = request.getParameter("thisEle");
-//        String start = request.getParameter("start");
-//        String end = request.getParameter("end");
-//        String color = request.getParameter("color");
         System.out.println("from /api/updateEvent");
         System.out.println(details);
         System.out.println(thisEle);
-//        System.out.println(name+details+start+end+color);
-//        System.out.println("from register " + username + password);
         // logging in twice has error
         // check if there is a current user logged in, if so log that user out first
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -42,26 +36,7 @@ public class UpdateEventController {
                 }
 
             }
-//            System.out.println(e.getEvents().get(Integer.parseInt(editingId)).getDetails());
-//            e.getEvents().get(Integer.parseInt(editingId)).setDetails(details);
-//            System.out.println("found events from username!");
-//            EventClass event = new EventClass();
-//            event.setName(name);
-//            event.setDetails(details);
-//            event.setStart(start);
-//            event.setEnd(end);
-//            event.setColor(color);
-//            e.getEvents().se
 
-//            System.out.println("finish setting up event");
-//            if(e.getEvents() == null){
-//                e.getEvents() = new ArrayList<>();
-//            }
-//            e.getEv
-//            System.out.println(e.getEvents().get(1).getDetails());
-//            e.getEvents().add(event);
-//            System.out.println(e);
-//            System.out.println(e.getEvents().get(Integer.parseInt(editingId)).getDetails());
             eventRepository.save(e);
 //                request.logout();
         }

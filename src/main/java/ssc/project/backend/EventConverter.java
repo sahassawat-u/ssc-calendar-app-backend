@@ -17,9 +17,8 @@ public class EventConverter implements AttributeConverter<List<EventClass>, Stri
 
     @Override
     public String convertToDatabaseColumn(List<EventClass> eventList) {
-//        System.out.println("hi from convertToDatabaseColumn");
+
         if(eventList == null)return null;
-//        System.out.println("hi from convertToDatabaseColumn");
         StringBuilder sb = new StringBuilder();
         for(EventClass e : eventList){
 //            sb.append("{ ");
@@ -32,62 +31,31 @@ public class EventConverter implements AttributeConverter<List<EventClass>, Stri
             sb.append(e.getEnd());
             sb.append(SM_SEPARATOR);
             sb.append(e.getColor());
-//            sb.append(SM_SEPARATOR);
-//            sb.append(e.getId());
-//            sb.append("} ");
             sb.append(SEPARATOR);
         }
-//        System.out.println(sb.toString());
-//        if(eventList.getColor() != null &&
-//            eventList.getDetails() != null &&
-//            eventList.getEnd() != null &&
-//            eventList.getStart() != null &&
-//            eventList.getName() != null){
-//            sb.append(eventList.getName());
-//            sb.append(SEPARATOR);
-//            sb.append(eventList.getDetails());
-//            sb.append(SEPARATOR);
-//            sb.append(eventList.getStart());
-//            sb.append(SEPARATOR);
-//            sb.append(eventList.getEnd());
-//            sb.append(SEPARATOR);
-//            sb.append(eventList.getColor());
-//            sb.append(SEPARATOR);
-//        }
+
         return sb.toString();
 //        return null;
     }
 
     @Override
     public List<EventClass> convertToEntityAttribute(String dbEventList) {
-//        System.out.println("hi from convertToEntityAttribute");
-//        return null;
+
         if (dbEventList == null || dbEventList.isEmpty()) {
             return null;
         }
-////
         List<EventClass> events = new ArrayList<>();
         String[] pieces = dbEventList.split(SEPARATOR);
-//        System.out.println("piece " + pieces);
         for(int i=0;i<pieces.length;i++){
             String[] sm_pieces = pieces[i].split(SM_SEPARATOR);
             EventClass event = new EventClass();
-//           for(int j=0;j<sm_pieces.length;j++){
             event.setName(sm_pieces[0]);
             event.setDetails(sm_pieces[1]);
             event.setStart(sm_pieces[2]);
             event.setEnd(sm_pieces[3]);
             event.setColor(sm_pieces[4]);
-//            event.setId(sm_pieces[5]);
-//               System.out.println("attribute " + sm_pieces[j]);
-//           }
             events.add(event);
         }
-//        System.out.println(events.get(0).getName());
-//        System.out.println(events.get(0).getDetails());
-//        System.out.println(events.get(0).getStart());
-//        System.out.println(events.get(0).getEnd());
-//        System.out.println(events.get(0).getColor());
 
         return events;
 //        List<EventClass> eventList = new ArrayList<>();

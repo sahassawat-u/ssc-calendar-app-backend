@@ -21,33 +21,16 @@ public class EventController {
      */
     @GetMapping("/api/events")
     public EventDTO getEvents(){
-//        System.out.println("hi from /api/events");
         // Put try around the statement because we use nested dot notation which could raise a NullPointException
         try {
             Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//            System.out.println("hi before if in /api/events");
             if (principal!=null && principal instanceof org.springframework.security.core.userdetails.User){
                 // user is logged in
                 System.out.println("hi from /api/events");
                 org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) principal;
                 System.out.println(user.getUsername());
                 Events e = eventRepository.findFirstByUsername(user.getUsername());
-//                System.out.println("hi after Events e assigned");
-//                EventClass eventClass = new EventClass();
-//
-//                eventClass.setName("Sleep");
-//                eventClass.setDetails("Sleep until tomorrow");
-//                eventClass.setStart("2021-07-13");
-//                eventClass.setStart("2021-07-15");
-//                eventClass.setColor("#1976D2");
-//                e.eve
-                System.out.println(user.getUsername());
-//                List<EventClass> eventList = new ArrayList<>();
 
-//                eventList.add(new EventClass("Sleep","Sleep until tomorrow","2021-07-13","2021-07-15","#1976D2"));
-//                eventList.add(new EventClass("Business","Business until tomorrow","2021-07-10","2021-07-12","#1976D2"));
-//                eventList.add(new EventClass("Eat","Eat until tomorrow","2021-07-08","2021-07-09","#1976D2"));
-//                eventList.add(eventClass);
                 return EventDTO.builder()
                         .username(e.getUsername())
                         .eventList(e.getEvents())
