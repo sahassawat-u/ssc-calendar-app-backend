@@ -47,6 +47,7 @@ public class AuthenticationController {
     public SimpleResponse logout(HttpServletRequest request){
         try {
             request.logout();
+            System.out.println("hi from logout api");
             return SimpleResponse.builder()
                     .success(true)
                     .message("You are successfully logout")

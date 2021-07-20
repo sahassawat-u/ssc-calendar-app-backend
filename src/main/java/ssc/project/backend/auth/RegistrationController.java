@@ -5,12 +5,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ssc.project.backend.SimpleResponse;
-import ssc.project.backend.User;
-import ssc.project.backend.UserRepository;
+import ssc.project.backend.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class RegistrationController {
@@ -18,12 +18,14 @@ public class RegistrationController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EventRepository eventRepository;
 
     @PostMapping("/api/register")
     public void register(HttpServletRequest request){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println("from register " + username + password);
+//        System.out.println("from register " + username + password);
         try {
             // logging in twice has error
             // check if there is a current user logged in, if so log that user out first
@@ -37,6 +39,21 @@ public class RegistrationController {
             newUser.setPassword(passwordEncoder.encode(password));
             newUser.setRole("USER");
             userRepository.save(newUser);
+//            String name = "Business";
+//            String details = "Business Trip";
+
+            EventClass event = new EventClass();
+            event.setName("dummy");
+            event.setDetails("for blob");
+            event.setStart("2010-07-02");
+            event.setEnd("2010-07-02");
+            event.setColor("#004080");
+            Events events = new Events();
+            List<EventClass> eventClassList = new ArrayList<>();
+            eventClassList.add(event);
+            events.setUsername(username);
+            events.setEvents(eventClassList);
+            eventRepository.save(events);
 //            request.reg(username,password);
 //            return SimpleResponse.builder()
 //                    .success(true)

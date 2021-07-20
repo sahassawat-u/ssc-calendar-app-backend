@@ -39,7 +39,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.csrf().disable();
 		// permit root and /api/login and /api/logout
 		http.authorizeRequests()
-				.antMatchers("/","/api/login","/api/logout","/api/whoami","/api/register").permitAll();
+				.antMatchers("/","/api/login","/api/whoami","/api/register").permitAll();
 		// permit all OPTIONS requests
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll();
@@ -49,24 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		// set every other path to require authentication
 		http.authorizeRequests().antMatchers("/**").authenticated();
-//		http
-//			.authorizeRequests()
-//				.antMatchers("/", "/home").permitAll()
-//				.anyRequest().authenticated()
-//				.and()
-//			.formLogin()
-//				.loginPage("/login")
-//				.permitAll()
-//				.and()
-//			.logout()
-//				.permitAll();
 	}
 
-//	@Override
-//	protected void configure(Aut) throws Exception{
-//
-//	}
-//	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
 		return ourUserDetailsService;
@@ -76,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 		@Override
 		public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
-			// output JSON message
+
 			String ajaxJson = AjaxUtils.convertToString(
 					SimpleResponse.builder()
 							.success(false)

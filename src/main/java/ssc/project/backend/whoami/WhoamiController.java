@@ -28,6 +28,7 @@ public class WhoamiController {
                 // user is logged in
                 org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) principal;
                 User u = userRepository.findFirstByUsername(user.getUsername());
+                System.out.println(u.getUsername());
                 return WhoamiDTO.builder()
                         .loggedIn(true)
                         .name(u.getUsername())
